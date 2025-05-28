@@ -15,4 +15,4 @@ jobs:
   ciao: 
     runs-on: ubuntu-latest
     steps: 
-      - echo "sudo shutdown"
+      - run: echo "sudo shutdown"
