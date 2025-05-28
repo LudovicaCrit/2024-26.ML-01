@@ -16,3 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - run: echo "Ciao, sono una stringa!"
+      - run: echo "Bubusettede!"
+      - run: python --version
+      - run: ifconfig
