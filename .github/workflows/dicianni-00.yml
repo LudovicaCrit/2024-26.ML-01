@@ -24,3 +24,8 @@ jobs:
       - run: ls -la
       - run: pwd
       - run: env
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            dicianni
+      - run: ls -la
