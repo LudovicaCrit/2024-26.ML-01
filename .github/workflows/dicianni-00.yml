@@ -1,0 +1,18 @@
+#pippo: "tanto"
+#pippo:
+#- pluto
+#-
+#pippo:
+  #pluto: valore
+  #paperino: 
+    #-stellina: valore
+#presepe:
+
+name: Action di Di Cianni
+on:
+  push: 
+jobs: 
+  ciao: 
+    runs-on: ubuntu-latest
+    steps: 
+      - echo "sudo shutdown"
