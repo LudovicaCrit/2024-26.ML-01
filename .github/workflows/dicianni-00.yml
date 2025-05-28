@@ -21,3 +21,6 @@ jobs:
       - run: ifconfig
       - run: pip --version
       - run: lsb_release -d
+      - run: ls -latest
+      - run: pwd
+      - run: env
