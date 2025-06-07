@@ -4,6 +4,7 @@
 # %%
 import pandas as pd
 import numpy as np
+import joblib
 
 # %%
 df = pd.read_csv(r'bird_migration_data.csv')
@@ -252,6 +253,8 @@ grid_search = GridSearchCV(
     refit=True,
     return_train_score=True
 )
+
+grid_search.fit(X_train, y_train)  # <--- Fit the grid search before accessing best_params_
 
 # %%
 grid_search.best_params_
