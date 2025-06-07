@@ -254,12 +254,6 @@ grid_search = GridSearchCV(
 )
 
 # %%
-pbar = tqdm(total=1, desc="GridSearchCV")
-grid_search.fit(X_train, y_train)
-pbar.update(1)
-pbar.close()
-
-# %%
 grid_search.best_params_
 
 # %%
@@ -343,10 +337,6 @@ random_search = RandomizedSearchCV(
     random_state=42              # Per riproducibilità
 )
 
-# %%
-with tqdm(total=1, desc="RandomizedSearchCV") as pbar:
-    random_search.fit(X_train, y_train)
-    pbar.update(1)
 
 # %%
 random_search.best_params_
