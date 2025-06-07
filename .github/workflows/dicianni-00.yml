@@ -29,3 +29,16 @@ jobs:
           sparse-checkout: |
             dicianni
       - run: ls -la
+      - uses: actions/setup-python@v5 # equivalente di venv
+        with:
+          python-version: '3.11.13'
+      - run: python --version
+      - run: pip install -r requirements.txt
+        working directory: dicianni
+      - run: pip install joblib
+      - run: python Addestramento_Test_Definitivo.py
+        working-directory: dicianni
+      - uses: actions/upload-artifact@v4
+        with: 
+          name: best_artifact
+          path: dicianni/artifact.joblib
