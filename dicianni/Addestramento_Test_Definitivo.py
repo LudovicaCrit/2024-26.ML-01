@@ -254,9 +254,10 @@ grid_search = GridSearchCV(
 )
 
 # %%
-with tqdm(total=1, desc="GridSearchCV") as pbar:
-    grid_search.fit(X_train, y_train)
-    pbar.update(1)
+pbar = tqdm(total=1, desc="GridSearchCV")
+grid_search.fit(X_train, y_train)
+pbar.update(1)
+pbar.close()
 
 # %%
 grid_search.best_params_
