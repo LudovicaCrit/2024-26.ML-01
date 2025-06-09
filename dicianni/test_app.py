@@ -29,7 +29,7 @@ def test_infer(client):
         "Predator_Sightings": 1, 
         "Migrated_in_Flock": "Yes",  # "Yes"/"No" invece di 1/0
         "Flock_Size": 20, 
-        "Food_Supply_Level": 3
+        "Food_Supply_Level": "High"  # "High"/"Medium"/"Low" invece di numeri
     }
     response = client.post("/infer", json=data)
     assert response.status_code in [200, 500]
