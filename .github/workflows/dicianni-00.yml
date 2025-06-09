@@ -1,20 +1,10 @@
-#pippo: "tanto"
-#pippo:
-#- pluto
-#-
-#pippo:
-  #pluto: valore
-  #paperino: 
-    #-stellina: valore
-#presepe:
-
 name: Action di Di Cianni
 on:
-  push: 
-jobs: 
-  ciao: 
+  push:
+jobs:
+  ciao:
     runs-on: ubuntu-latest
-    steps: 
+    steps:
       - run: echo "Ciao, sono una stringa!"
       - run: echo "Bubusettede!"
       - run: python --version
@@ -29,16 +19,22 @@ jobs:
           sparse-checkout: |
             dicianni
       - run: ls -la
-      - uses: actions/setup-python@v5 # equivalente di venv
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11.13'
       - run: python --version
       - run: pip install -r requirements.txt
         working-directory: dicianni
       - run: pip install joblib
+      - run: pip install flask
+      - run: pip install pytest
       - run: python Addestramento_Test_Definitivo.py
         working-directory: dicianni
+      - run: pytest test_app.py -v
+        working-directory: dicianni
+      - run: python -c "from app import load_model; print('Model test:', load_model() is not None)"
+        working-directory: dicianni
       - uses: actions/upload-artifact@v4
-        with: 
+        with:
           name: best_artifact
           path: dicianni/log_reg.joblib
