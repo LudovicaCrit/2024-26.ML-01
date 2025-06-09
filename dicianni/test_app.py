@@ -27,7 +27,7 @@ def test_infer(client):
         "Migration_Start_Month": "Mar",  # Stringa invece di numero!
         "Rest_Stops": 2, 
         "Predator_Sightings": 1, 
-        "Migrated_in_Flock": 1,
+        "Migrated_in_Flock": "Yes",  # "Yes"/"No" invece di 1/0
         "Flock_Size": 20, 
         "Food_Supply_Level": 3
     }
