@@ -12,7 +12,7 @@ def make_prediction(model, data):
     """Fa predizione"""
     df = pd.DataFrame([data])
     prediction = model.predict(df)[0]
-    return {"prediction": int(prediction)}
+    return {"prediction": str(prediction)}  # Mantieni come stringa
 
 @app.route('/infer', methods=['POST'])
 def infer():
