@@ -1,0 +1,10 @@
+name: Prof!
+on:
+  push:
+jobs:
+  simple-automation:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Ciao!!"
+      - run: echo "🐧🐧🐧🐧🐧🐧"
+      - run: echo "Questa è la mia prima automazione"
