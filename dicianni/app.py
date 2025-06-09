@@ -1,18 +1,8 @@
 from flask import Flask, request, jsonify
 import joblib
 import pandas as pd
-import yaml
-import os
 
 app = Flask(__name__)
-
-def load_config():
-    """Carica configurazione da YAML se presente"""
-    try:
-        with open('config.yml', 'r') as f:
-            return yaml.safe_load(f)
-    except FileNotFoundError:
-        return {}
 
 def load_model():
     """Carica il modello joblib"""
@@ -47,5 +37,4 @@ def infer():
     return jsonify({"result": result})
 
 if __name__ == '__main__':
-    config = load_config()
     app.run(debug=True)
