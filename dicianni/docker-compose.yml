@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: redis_news_hybrid
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --save 20 1
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  producer:
+    build: .
+    container_name: news_producer_hybrid
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: python producer.py
+    stdin_open: true
+    tty: true
+
+  consumer:
+    build: .
+    container_name: news_consumer_hybrid
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - DEFAULT_USER=utente
+      - DEFAULT_PASS=password
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: python consumer.py
+    stdin_open: true
+    tty: true
+
+  demo:
+    build: .
+    container_name: news_demo_hybrid
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: python demo.py
+
+volumes:
+  redis_data:
